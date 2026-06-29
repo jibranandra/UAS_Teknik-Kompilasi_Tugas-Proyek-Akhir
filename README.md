@@ -1,8 +1,5 @@
 # UAS_Teknik-Kompilasi_Tugas-Proyek-Akhir
-Berikut adalah penyelesaian tugas proyek akhir kompilasi Anda. Saya telah menyusunnya dalam format Markdown (`.md`) lengkap dengan pilihan konstruksi, pola tata bahasa, *source code* implementasi, serta penjelasan di setiap tahapannya. Anda dapat langsung menggunakan format ini sebagai dokumentasi tugas Anda.
-
 ---
-
 # Dokumentasi Proyek Akhir: Representasi Tahapan Kompilasi
 
 ## 1. Pilihan Konstruksi
