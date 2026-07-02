@@ -55,7 +55,6 @@ class WhileLoopCompiler:
             raise SyntaxError("Struktur harus dimulai dengan keyword 'while'.")
 
         try:
-            # Pengecekan Sintaksis Dasar (Keberadaan kurung dan kurawal)
             idx_open_paren = tokens.index('(')
             idx_close_paren = tokens.index(')')
             idx_open_brace = tokens.index('{')
@@ -63,11 +62,9 @@ class WhileLoopCompiler:
         except ValueError:
             raise SyntaxError("Sintaks tidak valid: Kurung atau kurawal tidak lengkap.")
 
-        # Ekstraksi bagian kondisi dan isi (body) perulangan
         condition_tokens = tokens[idx_open_paren+1 : idx_close_paren]
         body_tokens = tokens[idx_open_brace+1 : idx_close_brace]
 
-        # Tahap Analisis Semantik: Memeriksa apakah variabel dalam kondisi sudah dideklarasikan
         if len(condition_tokens) >= 3:
             var_name = condition_tokens[0]
             if var_name not in self.symbol_table and not var_name.isnumeric():
@@ -77,7 +74,6 @@ class WhileLoopCompiler:
 
         condition = " ".join(condition_tokens)
         
-        # Merapikan kembali spasi sebelum titik koma pada body
         body = " ".join(body_tokens).replace(" ;", ";")
 
         return condition, body
@@ -87,7 +83,6 @@ class WhileLoopCompiler:
         tokens = self.lexical_analysis()
         condition, body = self.syntax_semantic_analysis(tokens)
 
-        # Membuat label untuk awal perulangan dan akhir perulangan
         label_start = self.new_label()
         label_end = self.new_label()
 
@@ -95,7 +90,6 @@ class WhileLoopCompiler:
         tac.append(f"{label_start}:")
         tac.append(f"ifFalse {condition} goto {label_end}")
         
-        # Memproses isi statement di dalam blok while
         statements = [stmt.strip() for stmt in body.split(';') if stmt.strip()]
         for stmt in statements:
             tac.append(f"{stmt}")
@@ -119,13 +113,11 @@ if __name__ == "__main__":
     
     compiler = WhileLoopCompiler(source)
 
-    # Menampilkan hasil Analisis Leksikal
     print("1. Hasil Analisis Leksikal (Tokens):")
     tokens = compiler.lexical_analysis()
     print(tokens)
     print("-" * 40)
 
-    # Menampilkan hasil Generasi TAC (Telah melewati Sintaksis & Semantik)
     print("2. Hasil Generasi Three-Address Code (TAC):")
     try:
         tac_output = compiler.generate_tac()
