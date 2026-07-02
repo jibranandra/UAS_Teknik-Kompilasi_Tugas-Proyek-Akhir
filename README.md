@@ -40,7 +40,6 @@ class WhileLoopCompiler:
 
     def lexical_analysis(self):
         """Tahap 1: Memecah string input menjadi token."""
-        # Menambahkan spasi pada simbol agar mudah dipisah (split)
         padded_code = (self.source_code.replace('(', ' ( ')
                                        .replace(')', ' ) ')
                                        .replace('{', ' { ')
