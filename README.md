@@ -31,11 +31,9 @@ class WhileLoopCompiler:
     def __init__(self, source_code):
         self.source_code = source_code
         self.label_counter = 1
-        # Tabel simbol sederhana (Mock Symbol Table) untuk Analisis Semantik
         self.symbol_table = {"x": "int", "y": "int", "total": "int"}
 
     def new_label(self):
-        """Menghasilkan label baru untuk TAC."""
         lbl = f"L{self.label_counter}"
         self.label_counter += 1
         return lbl
